@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Word Guess Game</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+</head>
+
+<body onload="displayScreen()">
+    <h1>The Word Guess Game</h1>
+    <div class="d-flex">
+
+        <div class="mx-auto p-2 mb-5"><span id="directions-text">directions-text</span></div>
+    </div>
+
+    <div class="d-flex">
+        <div class="mx-auto p-2 mb-5">wins:<span id="wins-text"></span></div>
+
+    </div>
+    <div class="d-flex">
+        <div class="mx-auto p-2 mb-5">losses:<span id="losses-text"></span></div>
+
+    </div>
+    <div class="d-flex">
+        <div class="mx-auto p-2 mb-5">Guess Left:<span id="chance-text"></span></div>
+    </div>
+    <div class="d-flex">
+        <div class="mx-auto p-2 mb-5">Your Guesses So far: <span id="myoptions-text"></span></div>
+    </div>
+
+
+    <!-- var directionsText = document.getElementById("directions-text");
+
+var winsText = document.getElementById("wins-text");
+var lossesText = document.getElementById("losses-text");
+var chanceText = document.getElementById("chance-text");
+var myoptionsText = document.getElementById("myoptions-text");
+var screenText = document.getElementById("screen-display"); -->
+    <script type="text/javascript" src="game.js"></script>
+    <!-- 
+              directionsText.textContent = screenArray;
+              winsText.textContent = "wins: " + wins;
+              lossesText.textContent = "losses: " + losses;
+              chanceText.textContent = "Guess Left: " + chances;
+              myoptionsText.textContent = " Your Guesses So far: " + myoptions; -->
+    </div>
+</body>
+
+</html>

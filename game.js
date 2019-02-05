@@ -32,7 +32,17 @@ function varSetup() {
   chances = 8;
 }
 
+function validateDuplicates() {
+  alert("before", myoptions)
+  if (myoptions.includes(userGuess)) {
+    return true;
+  }
+}
+
 function validateUserGuess() {
+  if (validateDuplicates()) {
+    alert('working');
+  }
   if (computerGuess.includes(userGuess)) {
     var indices = [];
     for (var i = 0; i < computerGuess.length; i++) {
@@ -62,31 +72,37 @@ function validateUserGuess() {
 
 function displayScreen() {
   directionsText.textContent = screenArray;
-  winsText.textContent = "wins: " + wins;
-  lossesText.textContent = "losses: " + losses;
-  chanceText.textContent = "Guess Left: " + chances;
-  myoptionsText.textContent = " Your Guesses So far: " + myoptions;
+  winsText.textContent = wins;
+  lossesText.textContent = losses;
+  chanceText.textContent = chances;
+  myoptionsText.textContent = myoptions;
 }
 
-//Initialise the Game
-setup();
-varSetup();
-resetScreen();
+// function displayScreen() {
+//   directionsText.textContent = screenArray;
+//   winsText.textContent = "wins: " + wins;
+//   lossesText.textContent = "losses: " + losses;
+//   chanceText.textContent = "Guess Left: " + chances;
+//   myoptionsText.textContent = " Your Guesses So far: " + myoptions;
+// }
 
-// Create variables that hold references to the places in the HTML where we want to display things.
-// Word is madona
 
 var directionsText = document.getElementById("directions-text");
-
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 var chanceText = document.getElementById("chance-text");
 var myoptionsText = document.getElementById("myoptions-text");
 var screenText = document.getElementById("screen-display");
 
-document.onload = function onLoadPage(){
-document.getElementById('screen-display').value = screenArray;
-}
+//Initialise the Game
+setup();
+varSetup();
+resetScreen();
+
+
+// Create variables that hold references to the places in the HTML where we want to display things.
+// Word is madona
+
 // This function is run whenever the user presses a key.
 
 document.onkeyup = function (event) {
