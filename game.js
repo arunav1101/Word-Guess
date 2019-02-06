@@ -33,16 +33,15 @@ function varSetup() {
 }
 
 function validateDuplicates() {
-  alert("before", myoptions)
+  // alert("before", myoptions)
+  // alert(myoptions);
   if (myoptions.includes(userGuess)) {
     return true;
   }
 }
 
 function validateUserGuess() {
-  if (validateDuplicates()) {
-    alert('working');
-  }
+
   if (computerGuess.includes(userGuess)) {
     var indices = [];
     for (var i = 0; i < computerGuess.length; i++) {
@@ -67,7 +66,6 @@ function validateUserGuess() {
   } else {
     chances -= 1;
   }
-
 }
 
 function displayScreen() {
@@ -106,7 +104,7 @@ resetScreen();
 // This function is run whenever the user presses a key.
 
 document.onkeyup = function (event) {
-  if (event.key.match(/[!@#$%^&*(),.?":{}|/<> 0-9]/g)) {
+  if (event.key.match(/^[!@#$%^&*(),.?":{}|/<> 0-9]$/g)) {
     alert('Enter From a-z');
   } else {
     // document.write('');
@@ -117,8 +115,13 @@ document.onkeyup = function (event) {
 
   console.log('User Chose==>', userGuess);
   userGuess = userGuess.toLowerCase();
-  myoptions.push(userGuess);
-
+  console.log("Dup check",validateDuplicates());
+  console.log("myoptions",myoptions);
+ 
+ 
+  if (validateDuplicates()===true && myoptions.length<2) {
+    myoptions.push(userGuess);
+  }
   // new Array(computerGuess.length);
 
   validateUserGuess();
