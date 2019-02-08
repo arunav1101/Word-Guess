@@ -1,3 +1,32 @@
 p.table{
     float: left;
 }
+
+.check{
+    /* border: 1px solid black; */
+    width: 10%;
+    float:left;
+    clear: both;
+    margin:auto;
+    text-align: center;
+    /* position:fixed; */
+     
+     /* font-family: 'Dancing Script:400,1000', cursive; */
+     font-family: 'Luckiest Guy', cursive;
+     font-size: 30px;
+}
+
+.optionstext{
+    margin-left: 350px;
+}
+
+body {
+    background-image: url("assets/round.png");
+
+   }
+   img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}

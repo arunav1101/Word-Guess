@@ -1,14 +1,38 @@
-var words = ["Tags", "javascript", "node", "mongo", "css", "html"]
+var words = [{
+  word: "Tags",
+  image: "assets/tags.png"
+}, {
+  word: "javascript",
+  image: "assets/tags.png"
+}, {
+  word: "node",
+  image: "assets/node.png"
+}, {
+  word: "mongo",
+  image: "assets/mongo.png"
+}, {
+  word: "css",
+  image: "assets/css.png"
+}, {
+  word: "html",
+  image: "assets/html.png"
+}]
 
-function computerChoice() {
-  myword = words[Math.floor(Math.random() * (words.length - 1))];
-  return myword.toLowerCase();
-}
 
-var wins, losses, chances, computerGuess, userGuess;
+var wins, losses, chances, computerGuess, userGuess, defaultImage;
 var myoptions = [];
 var screenArray = [];
 
+
+function computerChoice() {
+  myword = words[Math.floor(Math.random() * (words.length - 1))].word;
+  console.log(myword);
+  return myword.toLowerCase();
+}
+
+function showImage() {
+
+}
 
 function resetScreen() {
   screenArray = [];
@@ -17,7 +41,6 @@ function resetScreen() {
   for (let j = 0; j < computerGuess.length; j++) {
     screenArray.push('_');
   }
-  console.log("User Guess Array=>", screenArray);
 }
 
 function setup() {
@@ -28,16 +51,8 @@ function setup() {
 function varSetup() {
   myoptions = [];
   userGuess = '';
-  // computerGuess = '';
-  chances = 8;
-}
-
-function validateDuplicates() {
-  // alert("before", myoptions)
-  // alert(myoptions);
-  if (myoptions.includes(userGuess)) {
-    return true;
-  }
+  chances = 10;
+  defaultImage = "assets/question.gif"
 }
 
 function validateUserGuess() {
@@ -52,38 +67,40 @@ function validateUserGuess() {
     for (k = 0; k < indices.length; k++) {
       screenArray[indices[k]] = userGuess;
     }
-    // // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
     var myarray = Array.from(computerGuess);
-    // console.log("converted array", JSON.stringify(myarray));
-
     if (JSON.stringify(screenArray) === JSON.stringify(myarray)) {
       wins++;
+
+
+
+      const result = words.find(fruit => fruit.word === computerGuess);
+
+      // console.log(words);
+      // const result = inventory.find( fruit => fruit.name === 'cherries' );
+      // let myImage = words.find(image => {
+      //   console.log( image.name,computerGuess)
+      //   image.name === computerGuess});
+      // console.log(myImage);
+
+      console.log(result);
+      document.getElementById("imageHTML").setAttribute("src", result.image);
+      // alert('Awesome! You Got Me!')
+      setDelay();
       varSetup();
       resetScreen();
-      alert('Awesome! You Got Me!')
     }
-
-  } else {
-    chances -= 1;
   }
 }
 
 function displayScreen() {
-  directionsText.textContent = screenArray;
+  var myscreenArray = screenArray.join(' ');
+  directionsText.textContent = myscreenArray;
   winsText.textContent = wins;
   lossesText.textContent = losses;
   chanceText.textContent = chances;
   myoptionsText.textContent = myoptions;
+  newImage.setAttribute("src", defaultImage);
 }
-
-// function displayScreen() {
-//   directionsText.textContent = screenArray;
-//   winsText.textContent = "wins: " + wins;
-//   lossesText.textContent = "losses: " + losses;
-//   chanceText.textContent = "Guess Left: " + chances;
-//   myoptionsText.textContent = " Your Guesses So far: " + myoptions;
-// }
-
 
 var directionsText = document.getElementById("directions-text");
 var winsText = document.getElementById("wins-text");
@@ -91,12 +108,17 @@ var lossesText = document.getElementById("losses-text");
 var chanceText = document.getElementById("chance-text");
 var myoptionsText = document.getElementById("myoptions-text");
 var screenText = document.getElementById("screen-display");
-
+var newImage = document.getElementById("imageHTML");
 //Initialise the Game
 setup();
 varSetup();
 resetScreen();
 
+function setDelay() {
+  instruction = "Press Any Key to Continue";
+  document.getElementById("instructionHTML").innerHTML = instruction;
+
+}
 
 // Create variables that hold references to the places in the HTML where we want to display things.
 // Word is madona
@@ -104,33 +126,32 @@ resetScreen();
 // This function is run whenever the user presses a key.
 
 document.onkeyup = function (event) {
-  if (event.key.match(/^[!@#$%^&*(),.?":{}|/<> 0-9]$/g)) {
-    alert('Enter From a-z');
-  } else {
+  if (event.key.match(/^[A-z]$/g)) {
     // document.write('');
     console.log('Computer Chose==>', computerGuess);
     // Determines which key was pressed.
     userGuess = event.key;
-  }
 
-  console.log('User Chose==>', userGuess);
-  userGuess = userGuess.toLowerCase();
-  console.log("Dup check",validateDuplicates());
-  console.log("myoptions",myoptions);
- 
- 
-  if (validateDuplicates()===true && myoptions.length<2) {
-    myoptions.push(userGuess);
-  }
-  // new Array(computerGuess.length);
+    console.log('User Chose==>', userGuess);
+    userGuess = userGuess.toLowerCase();
 
-  validateUserGuess();
+    if (myoptions.indexOf(userGuess) === -1) {
+      myoptions.push(userGuess);
+      chances -= 1;
+    }
 
-  if (chances <= 0) {
-    losses++;
-    varSetup();
-    resetScreen();
+
+    validateUserGuess();
+
+    if (chances <= 0) {
+      losses++;
+      varSetup();
+      resetScreen();
+    }
+    // // Hide the directions
+    displayScreen();
+
+  } else {
+    alert('Enter From a-z');
   }
-  // // Hide the directions
-  displayScreen();
 }
