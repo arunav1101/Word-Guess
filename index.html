@@ -1,29 +1,49 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>The Word Guess Game</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-</head>
-
-<body onload="displayScreen()">
-
-  <div class="container p-0 ">
-    <h1>The Word Guess Game</h1>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Word Guess Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
    
-    <p id="directions-text">Guess what word I am thinking of!</p>
-    <p id ="screen-display"></p>
-    <p id="wins-text"></p>
-    <p id="losses-text"></p>
-    <p id="chance-text"></p>
-    <p id="myoptions-text"></p>
+</head>
+<body >
+    <div class="container" >
+        <h1>TrapWords</h1>
+        <h2>Full Stack Terms</h2>
+    </div>
 
-  </div>
+    <div class="row">
+        <div class="column">
+          <img id="imageHTML">
+           <img id="mycontainer">
+          <p class="" id="instructionHTML"></p> 
+        </div>
+        <div class="column">
+            <div class="game-instruction">
+                <!-- <p id="directions-text">Press Any Key to Get Started!</p> -->
+                
+                <p>Wins</p>
+                <p  id="wins-text"></p>
+                
+                <p>Losses</p>
+                <p  id="losses-text"></p>
+                
+                <p>Current Word</p>
+                <p id="directions-text"></p>
 
-  <script type="text/javascript" src="game.js"></script>
+                <p>Number of Guesses Remaining</p>
+                <p  id="chance-text"></p>
 
+                <p>Letter Already Guessed</p>
+                <p  id="myoptions-text"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/logic/game.js"></script>
+    
 </body>
-
 </html>
