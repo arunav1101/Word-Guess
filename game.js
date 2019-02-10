@@ -39,7 +39,6 @@ function computerChoice() {
 function resetScreen() {
   screenArray = [];
   computerGuess = computerChoice();
-  // console.log('Computer Chose==>', computerGuess);
   for (let j = 0; j < computerGuess.length; j++) {
     screenArray.push('_');
   }
@@ -104,10 +103,6 @@ function restartGame() {
   resetScreen();
   displayScreen();
   document.getElementById("instructionHTML").innerHTML = instruction;
-  console.log('inside');
-  // startMyGame();
-  //   return 0;
-  // }
 }
 
 async function hideImage() {
@@ -115,7 +110,6 @@ async function hideImage() {
   await setTimeout(function () {
     document.getElementById("mycontainer").setAttribute("src", "");
   }, 3000);
-  // newImage.setAttribute("src", defaultImage);
 }
 
 function startMyGame() {
@@ -123,10 +117,8 @@ function startMyGame() {
   document.onkeyup = function (event) {
 
     if (event.key.match(/^[A-z]$/g)) {
-      // document.write('');
 
       console.log('Computer Chose==>', computerGuess);
-      // Determines which key was pressed.
       userGuess = event.key;
 
       console.log('User Chose==>', userGuess);
@@ -166,8 +158,6 @@ function newGame() {
     varSetup();
     resetScreen();
     displayScreen();
-
-    defaultImage = "assets/question.gif";
     startMyGame();
   }
 }
